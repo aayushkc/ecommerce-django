@@ -1,0 +1,30 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="box-element">
+    <div class="cart-row">
+        <div style="flex:2"></div>
+        <div style="flex:2"><strong>Item</strong></div>
+        <div style="flex:1"><strong>Price</strong></div>
+        <div style="flex:1"><strong>Quantity</strong></div>
+        <div style="flex:1"><strong>Total</strong></div>
+    </div>
+    {% for order in orderitems %}
+    <div class="cart-row">
+        <div style="flex:2"><img class="row-image" src="{{order.product.imageURL}}"></div>
+        <div style="flex:2"><p>{{order.product.name}}</p></div>
+        <div style="flex:1"><p>${{order.product.price|floatformat:2}}</p></div>
+        <div style="flex:1">
+            <p class="quantity">{{order.quantity}}</p>
+            <div class="quantity">
+                <img data-product="{{order.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+        
+                <img data-product="{{order.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+            </div>
+        </div>
+        <div style="flex:1"><p>${{order.get_total|floatformat:2}}</p></div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

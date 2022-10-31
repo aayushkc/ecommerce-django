@@ -1,0 +1,10 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<h1>Add Your Product</h1>
+<form action="{% url 'admin.company' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Submit</button>
+</form>
+{% endblock content%}
